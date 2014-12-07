@@ -19,32 +19,32 @@ Usage:
 
 2. Disable the default logger in your configuration (normally in your callRouter.php file):
 
-$config = new Amfphp_Core_Config;
-$config->disabledPlugins[] = 'AmfphpLogger';
+    $config = new Amfphp_Core_Config;
+    $config->disabledPlugins[] = 'AmfphpLogger';
 
 3. Optionally configure the logger's directory.  The example below logs to /var/log/amfphp, which you must create with mkdir and make writable by www.
 
-$config->pluginsConfig['AmfphpBinaryLogger']['dirName'] = '/var/log/amfphp/';
+    $config->pluginsConfig['AmfphpBinaryLogger']['dirName'] = '/var/log/amfphp/';
 
-Notice the trailing slash!
+    Notice the trailing slash!
 
-If you do not set the dirName, it will default to the system temporary directory returned by sys_get_temp_dir(), plus the system DIRECTORY_SEPARATOR.
+    If you do not set the dirName, it will default to the system temporary directory returned by sys_get_temp_dir(), plus the system DIRECTORY_SEPARATOR.
 
 4. Optionally configure the logfile pattern using the strftime escapes.  E.g., the following fileNamePattern creates logfiles that are rotated hourly, named (e.g.) 20141206-23-bin.log.
 
-$config->pluginsConfig['AmfphpBinaryLogger']['fileNamePattern'] = '%Y%m%d-%H-bin.log';
+    $config->pluginsConfig['AmfphpBinaryLogger']['fileNamePattern'] = '%Y%m%d-%H-bin.log';
 
-If you do not set the filename pattern, it will default to amfphp-%Y%m%d.log, which rotates daily.
+    If you do not set the filename pattern, it will default to amfphp-%Y%m%d.log, which rotates daily.
 
 5. Optionally store a unique identifier such as the Apache web server's cookie with each request:
 
-$config->pluginsConfig['AmfphpBinaryLogger']['clientIdentifier'] = $_COOKIE['Apache'];
+    $config->pluginsConfig['AmfphpBinaryLogger']['clientIdentifier'] = $_COOKIE['Apache'];
 
 6. To read the logfiles, use the AmfphpBinaryLoggerReader class.  Its simplest use is with the php command.  You must supply the filename of the logfile to read.  Example:
 
-$ php -r 'require "AmfphpBinaryLoggerReader.php"; AmfphpBinaryLoggerReader::show("/tmp/amfphp-20130405.log");'
+    $ php -r 'require "AmfphpBinaryLoggerReader.php"; AmfphpBinaryLoggerReader::show("/tmp/amfphp-20130405.log");'
 
-For more flexibility, the AmfphpBinaryLoggerReader class has a constructor that takes a filename or a PHP resource and reads its lines, returning an AmfphpBinaryLoggerEntry object for each line.  See the AmfphpBinaryLoggerReader class for its use.  This enables you to analyze the requests and responses more precisely than by using text tools on the output of the AmfphpBinaryLoggerReader::show command.
+    For more flexibility, the AmfphpBinaryLoggerReader class has a constructor that takes a filename or a PHP resource and reads its lines, returning an AmfphpBinaryLoggerEntry object for each line.  See the AmfphpBinaryLoggerReader class for its use.  This enables you to analyze the requests and responses more precisely than by using text tools on the output of the AmfphpBinaryLoggerReader::show command.
 
 
 
