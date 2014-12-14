@@ -22,7 +22,7 @@ Usage:
     $config = new Amfphp_Core_Config;
     $config->disabledPlugins[] = 'AmfphpLogger';
 
-3. Optionally configure the logger's directory.  The example below logs to /var/log/amfphp, which you must create with mkdir and make writable by www.
+3. Optionally configure the logger's directory.  The example below logs to /var/log/amfphp, which you must create with mkdir and make writable by the user account used by your web server - e.g. apache or www.
 
     $config->pluginsConfig['AmfphpBinaryLogger']['dirName'] = '/var/log/amfphp/';
 
